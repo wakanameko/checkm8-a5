@@ -1,6 +1,6 @@
 #include "Usb.h"
 
-#define A5_8942
+#define A5_8945
 #include "constants.h"
 
 USB Usb;
@@ -35,6 +35,7 @@ void setup() {
   Serial.println("checkm8 started");
   if(Usb.Init() == -1)
     Serial.println("usb init error");
+  pinMode(LED_BUILTIN, OUTPUT); // board LED
   delay(200);
 }
 
@@ -74,10 +75,18 @@ void loop() {
       case CHECKM8_INIT_RESET:
         for(int i = 0; i < 3; i++)
         {
+          /* For additional LED
           digitalWrite(6, HIGH);
           delay(500);
           digitalWrite(6, LOW);
           delay(500);
+          */
+          /* Do blink LED on the arduino board */
+          digitalWrite(LED_BUILTIN, HIGH);
+          delay(500);
+          digitalWrite(LED_BUILTIN, LOW);
+          delay(500);
+          
         }
         checkm8_state = CHECKM8_HEAP_FENG_SHUI;
         Usb.setUsbTaskState(USB_ATTACHED_SUBSTATE_RESET_DEVICE);
@@ -99,7 +108,8 @@ void loop() {
         Usb.setUsbTaskState(USB_ATTACHED_SUBSTATE_RESET_DEVICE);
         break;
       case CHECKM8_END:
-        digitalWrite(6, HIGH);
+        // digitalWrite(6, HIGH);
+        digitalWrite(LED_BUILTIN, HIGH);
         Serial.println("Done!"); 
         checkm8_state = -1;
         break;
