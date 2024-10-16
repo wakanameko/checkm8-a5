@@ -1,4 +1,4 @@
-# A5/A5X checkm8
+# A5/A5X checkm8 (LED代をケチりたい人向けフォーク版)
 
 [checkm8](https://github.com/axi0mX/ipwndfu/blob/master/checkm8.py) port for S5L8940X/S5L8942X/S5L8945X based on Arduino and MAX3421E-based USB Host Shield
 
